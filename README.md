@@ -41,7 +41,7 @@ The model is used to study the impact of mass drug administration (MDA) with ive
 
 ## Authors
 
-- [Your Name]
+- Jonathan Hamley
 
 ## License
 

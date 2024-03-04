@@ -1,28 +1,48 @@
-# EPIONCHO-IBM
+# Onchocerciasis Transmission Dynamics Simulation Model
 
-The provided code is a simulation model for the transmission dynamics of onchocerciasis (river blindness) in a human population, incorporating the life cycle of the parasite Onchocerca volvulus and its vector, the blackfly. The model is individual-based for humans but population-based for the parasite stages in the blackfly. Here's a summary of the logical flow:
+This repository contains a simulation model for the transmission dynamics of onchocerciasis (river blindness) in a human population. The model incorporates the life cycle of the parasite *Onchocerca volvulus* and its vector, the blackfly. It is individual-based for humans but population-based for the parasite stages in the blackfly.
 
-    Initialization: The model sets up various parameters related to the human population, parasite life stages, treatment effects, and simulation settings.
+## Model Overview
 
-    Treatment Coverage: The function os.cov calculates which individuals will be treated based on their compliance and age, adjusting the coverage accordingly.
+The model simulates the following key processes:
 
-    Parasite Dynamics in Humans: The change.micro function simulates the change in the number of microfilariae (mf) in each human using the Runge-Kutta 4th order method (RK4). It accounts for the fecundity of adult worms, mf mortality, and the effects of ivermectin treatment.
+1. **Treatment Coverage**: Determines which individuals will be treated based on their compliance and age, adjusting the coverage accordingly.
 
-    Parasite Dynamics in Blackflies: The functions calc.L1, calc.L2, and calc.L3 calculate the dynamics of the parasite's life stages (L1, L2, L3 larvae) in the blackfly population, assuming equilibrium conditions.
+2. **Parasite Dynamics in Humans**: Simulates the change in the number of microfilariae (mf) in each human, accounting for the fecundity of adult worms, mf mortality, and the effects of ivermectin treatment.
 
-    Infection Acquisition in Humans: The function Wplus1.rate calculates the rate of new infections in humans based on the mean number of L3 larvae in the fly population.
+3. **Parasite Dynamics in Blackflies**: Calculates the dynamics of the parasite's life stages (L1, L2, L3 larvae) in the blackfly population, assuming equilibrium conditions.
 
-    Mf Prevalence and Intensity: The function mf.per.skin.snip calculates the number of mf in a skin snip for all people, which is used to estimate mf prevalence and intensity in the human population.
+4. **Infection Acquisition in Humans**: Calculates the rate of new infections in humans based on the mean number of L3 larvae in the fly population.
 
-    Main Simulation Loop (ep.equi.sim):
-        The simulation runs for a specified number of iterations, representing the passage of time.
-        At each iteration, the model updates the age of individuals, determines which individuals die, and simulates the birth of new individuals.
-        The model calculates the exposure of individuals to blackfly bites, which influences the rate of new infections.
-        The dynamics of adult worms and mf within humans are updated using the respective functions.
-        The dynamics of parasite life stages in the blackfly population are updated.
-        The model tracks the prevalence and intensity of mf in the human population over time.
-        If treatment is being administered, the model updates the treatment status of individuals and adjusts the dynamics of worms and mf accordingly.
+5. **Mf Prevalence and Intensity**: Estimates mf prevalence and intensity in the human population based on the number of mf in a skin snip.
 
-    Output: The simulation returns the final state of the human population, the prevalence of mf, and the mean mf intensity per skin snip.
+## Simulation Process
+
+The main simulation loop (`ep.equi.sim`) performs the following steps:
+
+- Updates the age of individuals and simulates births and deaths.
+- Calculates individual exposure to blackfly bites, influencing the rate of new infections.
+- Updates the dynamics of adult worms and mf within humans.
+- Updates the dynamics of parasite life stages in the blackfly population.
+- Tracks the prevalence and intensity of mf in the human population over time.
+- If treatment is being administered, updates the treatment status of individuals and adjusts the dynamics of worms and mf accordingly.
+
+## Output
+
+The simulation returns:
+
+- The final state of the human population.
+- The prevalence of mf.
+- The mean mf intensity per skin snip.
+
+## Usage
 
 The model is used to study the impact of mass drug administration (MDA) with ivermectin on the transmission and control of onchocerciasis. It can simulate different scenarios based on the treatment coverage, treatment interval, and duration of the intervention.
+
+## Authors
+
+- [Your Name]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
